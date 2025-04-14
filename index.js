@@ -41,6 +41,14 @@ try { // this is to handle error in case clubs.json does not exist
   process.exit(1);
 }
 
+function saveData(data) {
+  fs.writeFileSync(usersFilePath, JSON.stringify(data, null, 2));
+}
+
+function loadData() {
+  return JSON.parse(fs.readFileSync(usersFilePath));
+}
+
 // Routes
 // to get index.hbs as the first page to display
 app.get('/', (req, res) => {
@@ -56,8 +64,21 @@ app.get('/', (req, res) => {
   }
 });
 
-app.post('/join', (req, res) => {
-  res.render('join.hbs');
+app.get('/join', (req, res) => {
+  const clubMembers = JSON.parse(fs.readFileSync(usersFilePath));
+  const clubM = clubMembers.students;
+  res.render('join.hbs', {clubArray, clubM});
+});
+
+app.post('/submit', (req, res) => {
+  const newMember = req.body;
+  console.log(newMember);
+  const members = loadData();
+  console.log(members);
+
+  members.students.push(newMember);
+  saveData(members);
+  res.redirect('join');
 });
 
 // enable web service

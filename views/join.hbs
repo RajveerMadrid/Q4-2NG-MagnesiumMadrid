@@ -3,46 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Madrid - HTML Form</title>
+  <title>Madrid - Club Sign-Up Form</title>
   <link rel="stylesheet" type="text/css" href="/styles.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-  <style>
-    html {
-        width: 100%;
-        height: 100%;
-    }
-
-    body {
-        text-align: center;
-        color: cornsilk;
-        background-color: rgb(47, 47, 163);
-    }
-
-    form {
-        width: 100%;
-    }
-
-    .form-info {
-        margin-bottom: 5px;
-    }
-
-    .info-chunk {
-        overflow: auto;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        place-self: center;
-        text-align: center;
-        padding: 5px;
-        width: 50%;
-        border: 2px solid cornsilk;
-    }
-
-  </style>
 </head>
 
 <body>
-  <h1>Madrid - 9 Mg - 2025 Feb 28</h1>
+  <h1>Madrid - 9 Mg - 2025 April 14</h1>
   <form action="/submit" method="post" onsubmit="submission()" onreset="disappear()">
     
     <div class="info-chunk">
@@ -52,8 +19,8 @@
          </div>
 
          <div class="form-info">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
         </div>
    
         <div class="form-info">
@@ -69,13 +36,13 @@
 
     <div class="info-chunk">
         <div class="form-info">
-            <label for="phone">Mobile Phone:</label>
-            <input type="text" id="phone" name="phone" required>
+            <label for="mobile">Mobile Phone:</label>
+            <input type="text" id="mobile" name="mobile" required>
         </div>
 
         <div class="form-info">
-            <label for="grade">Grade Level:</label>
-            <select id="grade" name="grade" required>
+            <label for="gradeLevel">Grade Level:</label>
+            <select id="gradeLevel" name="gradeLevel" required>
                 <option value="">Select your Grade Level</option>
                 <option value="7">7</option>
                 <option value="8">8</option>
@@ -87,28 +54,24 @@
         </div>
 
         <div class="form-info">
-            <label for="dorm">Intern/Extern:</label>
+            <label for="type">Intern/Extern:</label>
             <label>
-                <input type="radio" name="dorm" value="intern" required>
+                <input type="radio" name="type" value="intern" required>
                 Intern
             </label>
             <label>
-                <input type="radio" name="dorm" value="extern" required> 
+                <input type="radio" name="type" value="extern" required> 
                 Extern
             </label>
         </div>
 
         <div class="form-info">
-            <label for="organization">Organization: </label>
-            <select id="grade" name="grade" required>
-                <option value="">Select your organization</option>
-                <option value="astronomy">Astronomy</option>
-                <option value="math">Math</option>
-                <option value="chemistry">Chemistry</option>
-                <option value="biology">Biology</option>
-                <option value="social-sciences">Social Sciences</option>
-                <option value="gaming">Gaming</option>
-                <option value="sports">Sports</option>
+            <label for="preferredClub">Organization: </label>
+            <select id="preferredClub" name="preferredClub" onchange="filterStudents()">
+            <option value="all">All Clubs</option>
+            {{#each clubArray}}
+              <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
             </select>
         </div>
 

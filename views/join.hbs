@@ -1,74 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Club Sign-Up and Filter</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="AL Mendoza" />
-    <meta name="revised" content="04/06/2025" />
-    <meta name="description" content="Student Club Sign-up Form" />
-    <link rel="stylesheet" href="styles.css" />
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madrid - HTML Form</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+  <style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        text-align: center;
+        color: cornsilk;
+        background-color: rgb(47, 47, 163);
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .form-info {
+        margin-bottom: 5px;
+    }
+
+    .info-chunk {
+        overflow: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        place-self: center;
+        text-align: center;
+        padding: 5px;
+        width: 50%;
+        border: 2px solid cornsilk;
+    }
+
+  </style>
 </head>
+
 <body>
-    <form action="/submit-form" method="post" class="container"
-          onsubmit = "return confirm('Accept Student-Sign-Up')"      
-          onreset = "return confirm('Entered data will be lost. Continue?')" 
-    >
-        <caption> 
-          <h1>
-           Student Club Sign-up Form
-          </h1>
-        </caption>
-        <label for="studentID">Student ID:</label>
-        <input type="number" id="studentID" name="studentID" required>
-        
-        <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" required>
-        
-        <label for="birthday">Birthday:</label>
-        <input type="date" id="birthday" name="birthday" required>
-        
-        <label for="email">Email Address:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="mobile">Mobile Phone:</label>
-        <input type="text" id="mobile" name="mobile" required>
-        
-        <label for="gradeLevel">Grade Level:</label>
-        <select id="gradeLevel" name="gradeLevel" required>
-            <option value="grade7">Grade 7</option>
-            <option value="grade8">Grade 8</option>
-            <option value="grade9">Grade 9</option>
-            <option value="grade10">Grade 10</option>
-            <option value="grade11">Grade 11</option>
-            <option value="grade12">Grade 12</option>
-        </select>
-        
-        <label>Intern / Extern:</label>
-        <input type="radio" id="intern" name="type" value="intern" required>
-        <label for="intern" style="display: inline;">Intern</label>
-        <input type="radio" id="extern" name="type" value="extern" required>
-        <label for="extern" style="display: inline;">Extern</label>
-        
-        <label for="organization">Preferred Organization / Club:</label>
-        <select id="preferredClub" name="preferredClub" required>
-           <!-- use handlebars to create a drop-down of clubs' name -->
-        </select>
-        
-        <label for="reason">Why do you want to join?</label>
-        <textarea id="reason" name="reason" required></textarea>
-        
-        <div class="buttons">
-            <input type="submit" value="Submit">
-            <input type="reset" value="Reset">
+  <h1>Madrid - 9 Mg - 2025 Feb 28</h1>
+  <form action="/submit" method="post" onsubmit="submission()" onreset="disappear()">
+    
+    <div class="info-chunk">
+        <div class="form-info">
+            <label for="studentID">Student ID:</label>
+            <input type="number" id="studentID" name="studentID" required>
+         </div>
+
+         <div class="form-info">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
         </div>
-    </form>
-    <p style="max-width: 600px; margin: auto; padding: 20px;">
+   
+        <div class="form-info">
+            <label for="birthday">Birthday:</label>
+            <input type="date" id="birthday" name="birthday" required>
+        </div>
+
+        <div class="form-info">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+    </div>
+
+    <div class="info-chunk">
+        <div class="form-info">
+            <label for="phone">Mobile Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+        </div>
+
+        <div class="form-info">
+            <label for="grade">Grade Level:</label>
+            <select id="grade" name="grade" required>
+                <option value="">Select your Grade Level</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+
+        <div class="form-info">
+            <label for="dorm">Intern/Extern:</label>
+            <label>
+                <input type="radio" name="dorm" value="intern" required>
+                Intern
+            </label>
+            <label>
+                <input type="radio" name="dorm" value="extern" required> 
+                Extern
+            </label>
+        </div>
+
+        <div class="form-info">
+            <label for="organization">Organization: </label>
+            <select id="grade" name="grade" required>
+                <option value="">Select your organization</option>
+                <option value="astronomy">Astronomy</option>
+                <option value="math">Math</option>
+                <option value="chemistry">Chemistry</option>
+                <option value="biology">Biology</option>
+                <option value="social-sciences">Social Sciences</option>
+                <option value="gaming">Gaming</option>
+                <option value="sports">Sports</option>
+            </select>
+        </div>
+
+        <div class="form-info">
+            <label for="reason">Why do you want to join?</label>
+            <br/>
+            <textarea id="reason" name="reason" rows="7" columns="70" required></textarea>
+        </div>
+    </div>
+
+    <input type="submit">
+    <input type="reset">
+  </form>
+   <p style="max-width: 600px; margin: auto; padding: 20px;">
         <a href="/">
           <button type="button"> Click Here to See Member list </button>
         </a>
     </p>
      
+
+  <script>
+    function submission() {
+        confirm("Are you sure you want to submit?")
+    }
+
+    function disappear() {
+        confirm("Are you sure you want to reset?")
+    }
+  </script>
 </body>
 </html>

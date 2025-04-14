@@ -56,8 +56,9 @@ app.get('/', (req, res) => {
   }
 });
 
-
-
+app.post('/join', (req, res) => {
+  res.render('join.hbs');
+});
 
 // enable web service
 const PORT = 3000;
